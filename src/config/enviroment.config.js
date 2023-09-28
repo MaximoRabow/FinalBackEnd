@@ -20,4 +20,4 @@ class ConfigManager {
         return ConfigManager.#instance;
         }
 };
-
+}
