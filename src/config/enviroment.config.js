@@ -21,3 +21,5 @@ class ConfigManager {
         }
 };
 }
+
+export default ConfigManager;
