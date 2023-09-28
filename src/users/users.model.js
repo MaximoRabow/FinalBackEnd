@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const usersCollection = "Users";
 
 const userSchema = new mongoose.Schema({
-    name: String,
+    firstName: String,
     lastName: String,
     email: {
         type: String,
@@ -16,6 +16,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         select: false,
         required: true,
+        minlength: 8,
+        maxlength: 20,
     },
     role: {
         type: String,
