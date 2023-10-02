@@ -15,8 +15,4 @@ app.use(express.static("public"));
 app.use(express.json);
 app.use(express.urlencoded({extended: true}));
 
-app.use('/index', (req, res) => {
-    res.send('index');
-});
-
 app.listen(PORT,()=>console.log(`Listening on ${PORT}`));

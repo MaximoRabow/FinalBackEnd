@@ -15,8 +15,8 @@ class UserRepository {
     async update (id, data) {
         return await this.dao.update(id, data)
     };
-    async delete (id) {
-
+    async dellete (id) {
+        return await this.dao.dellete(id)
     };
 }
 
