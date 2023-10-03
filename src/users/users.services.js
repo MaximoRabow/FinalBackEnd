@@ -1,4 +1,4 @@
-import { config } from "../config/enviroment.config.js";
+import config from "../config/enviroment.config.js";
 import UserRepository from "./users.repository.js";
 
 

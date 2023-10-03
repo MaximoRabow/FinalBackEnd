@@ -68,4 +68,5 @@ class ProductsController {
     };
 }
 
-export default ProductsController();
+const productsController = new ProductsController();
+export default productsController;
