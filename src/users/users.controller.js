@@ -43,4 +43,6 @@ class UsersController {
     };
 }
 
-export default UsersController();
+const userController = new UsersController();
+
+export default userController;
