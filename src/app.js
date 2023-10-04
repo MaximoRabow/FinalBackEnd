@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT||8080;
 
 if (config.PERSISTENCE === "mongodb") {
-    mongoose.connect(config.MONGO_URL);
+    mongoose.connect(config.MONGO_URI);
 }
 
 app.engine("handlebars", handlebars.engine());
