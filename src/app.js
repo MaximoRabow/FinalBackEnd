@@ -27,8 +27,4 @@ app.use("/api/users",usersRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/cart",cartRouter);  
 
-
-
-
-
 app.listen(PORT,()=>console.log(`Listening on ${PORT}`));
