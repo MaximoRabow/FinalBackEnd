@@ -1,5 +1,5 @@
 import { Router } from "express";
-import home from "../shaw/views.controller.js"   
+import home from "./views.controller.js"   
 
 const viewsRouter = Router();
 

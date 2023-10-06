@@ -6,7 +6,7 @@ import config from "./config/enviroment.config.js";
 import usersRouter from "./users/users.router.js";
 import productsRouter from "./product/products.router.js";
 import cartRouter from "./cart/cart.router.js";
-import viewsRouter from "./shaw/views.router.js";
+import viewsRouter from "./templetes/views.router.js";
 
 const app = express();
 const PORT = process.env.PORT||8080;
