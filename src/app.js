@@ -6,6 +6,7 @@ import config from "./config/enviroment.config.js";
 import usersRouter from "./users/users.router.js";
 import productsRouter from "./product/products.router.js";
 import cartRouter from "./cart/cart.router.js";
+import viewsRouter from "./shaw/views.router.js";
 
 const app = express();
 const PORT = process.env.PORT||8080;
@@ -23,6 +24,7 @@ app.use(express.static("public"));
 app.use(express.json);
 app.use(express.urlencoded({extended: true}));
 
+app.use("/",viewsRouter);
 app.use("/api/users",usersRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/cart",cartRouter);  
