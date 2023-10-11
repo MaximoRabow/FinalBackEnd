@@ -2,6 +2,8 @@ import cartModel from "../models/cart.model.js";
 
 class Cart {
     constructor() {
+        console.log("mongo cart dao")
+    }
         getAll = async () => {
             const cart = await cartModel.find();
             return cartModel.find();
@@ -19,7 +21,7 @@ class Cart {
             return deletedCart;
         };
         
-    }
+    
 }
 
 export default Cart;

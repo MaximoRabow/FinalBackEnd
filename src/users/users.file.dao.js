@@ -1,9 +1,12 @@
 import fs from "fs";
+import path from "path";
 
 
 class Users {
     constructor() {
-        getAll = async () => {
+        console.log("fs")
+    }
+        getUser = async () => {
             if (fs.existsSync(path)) {
                 try {
                     const data = await fs.promises.readFile(path, "utf-8");
@@ -69,7 +72,7 @@ class Users {
         dellete = async (id) => {
 
         }
-    }
+    
 }
 
 export default Users;

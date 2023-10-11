@@ -14,9 +14,10 @@ class UsersController {
         }
     }
 
-    async getAll(req, res) {
+    async getAllUsers(req, res) {
         try {
             const users = await this.userService.getUsers();
+            res.send({status: success, payload: users})
             res.status(200).json(users);
         } catch (error) {
             res.status(500).json({ message: error.message });

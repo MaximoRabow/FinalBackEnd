@@ -1,53 +1,40 @@
 import fs from "fs";
+import { dirname } from "path";
 
-class Users {
+const __dirname = dirname(new URL(import.meta.url).pathname);
+
+export default class Cart {
     constructor() {
-        getAll = async () => {
-            if (fs.existsSync(path)) {
-                try {
-                    const data = await fs.promises.readFile(path, "utf-8");
-                    return JSON.parse(data);
-                } catch (error) {
-                    return error;
-                };
-            }
-        }
-        getById = async (id) => {
-            if (fs.existsSync(path)) {
-                try {
-                    const data = await fs.promises.readFile(path, "utf-8");
-                    return JSON.parse(data).find(user => user.id === id);
-                } catch (error) {
-                    return error;
-                }
-            };
-        };
-        update = async (id, user) => {
-            try {
-                const data = await fs.promises.readFile(path, "utf-8");
-                const users = JSON.parse(data);
-                const index = users.findIndex(user => user.id === id);
-                users[index] = user;
-                await fs.promises.writeFile(path, JSON.stringify(users, null, 2));
-                return user;
-            } catch (error) {
-                return error;
-            }
-        }
-        dellete = async (id) => {
-            try {
-                const data = await fs.promises.readFile(path, "utf-8");
-                const users = JSON.parse(data);
-                const index = users.findIndex(user => user.id === id);
-                users.splice(index, 1);
-                await fs.promises.writeFile(path, JSON.stringify(users, null, 2));
-                return users;
-            } catch (error) {
-                return error;
-            }
-        }    
+        console.log("fs")
     }
+    getAll = async () => {
+        try {
+            const data = await fs.promises.readFile(__dirname + "/carts.json", "utf-8");
+            return JSON.parse(data);
+        } catch (error) {
+            console.log(error);
+        }
+    
+    };
+    getById = async (id) => {
+        try {
+            const data = await fs.promises.readFile(__dirname + "/carts.json", "utf-8");
+            const carts = JSON.parse(data);
+            return carts.find(cart => cart.id === id);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    create = async (cart) => {
+        try {
+            const data = await fs.promises.readFile(__dirname + "/carts.json", "utf-8");
+            const carts = JSON.parse(data);
+            cart.id = carts.length + 1;
+            carts.push(cart);
+            await fs.promises.writeFile(__dirname + "/carts.json", JSON.stringify(carts, null, 2));
+            return cart;
+        } catch (error) {
+            console.log(error);
+        }
+    };
 }
-
-export default Users;   
-

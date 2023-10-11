@@ -2,6 +2,8 @@ import productsModel from "./produts.model.js";
 
 class Products {
     constructor() {
+        console.log("mongodb")
+    }
         getAll = async () => {
             return await productsModel.find();
         };
@@ -17,7 +19,7 @@ class Products {
         dellete = async (id) => {
             return await productsModel.findByIdAndDelete(id);
         };
-    }
+    
 } 
 
 export default Products;

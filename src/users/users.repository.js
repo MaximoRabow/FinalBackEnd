@@ -3,19 +3,19 @@ class UserRepository {
     constructor(dao) {
         this.dao = dao
     }
-    async getAll () {
+    async getUsers () {
         return await this.dao.getAll()
     };
-    async getById (id) {
+    async getBy (id) {
         return await this.dao.getById(id)
     };
-    async create (data) {
+    async createUsers (data) {
         return await this.dao.create(data)
     };
-    async update (id, data) {
+    async updateUsers (id, data) {
         return await this.dao.update(id, data)
     };
-    async dellete (id) {
+    async delleteUsers (id) {
         return await this.dao.dellete(id)
     };
 }

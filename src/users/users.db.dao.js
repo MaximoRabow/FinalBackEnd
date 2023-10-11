@@ -2,9 +2,11 @@ import usersModel from "./users/users.model.js";
 
 class Users {
     constructor() {
+        console.log("trabajando en mongodb")
+        }
         getAll = async () => {
             const users = await usersModel.find();
-            return users;
+            return users.map(user => user.toObject());
         };
         getById = async (id) => {
             const user = await usersModel.findById(id);
@@ -24,7 +26,8 @@ class Users {
         };
             
         
-    }
+
 }
 
 export default Users;
+

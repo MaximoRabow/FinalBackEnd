@@ -1,63 +1,55 @@
 import fs from 'fs';
+import __dirname from '../utils/dirname.js';
 
-class Products {
-    constructor() {
-        this.path = 'products.json';
+const productsFilePath = __dirname + '/files/products.json';
+export default class Products {
+    constructor(){
+        console.log("fs")
     }
-
-    getAll = async () => {
-        if (fs.existsSync(this.path)) {
+        getAll = async () => {
+            if (fs.existsSync(productsFilePath)) {
+                try {
+                    const data = await fs.promises.readFile(productsFilePath, 'utf-8');
+                    return JSON.parse(data);
+                } catch (error) {
+                    return error;
+                }
+            }
+        };
+        getById = async (id) => {
             try {
-                const data = await fs.promises.readFile(this.path, 'utf-8');
-                return JSON.parse(data);
+                const data = await fs.promises.readFile(productsFilePath, 'utf-8');
+                const products = JSON.parse(data);
+                return products.find(product => product.id === id);
             } catch (error) {
                 return error;
             }
-        } else {
-            return [];
         }
-    }
-
-    getById = async (id) => {
-        if (fs.existsSync(this.path)) {
+        create = async (product) => {
             try {
-                const data = await fs.promises.readFile(this.path, 'utf-8');
-                const products = JSON.parse(data);
-                const product = products.find(product => product.id === id);
-                return product;
+                const products = await this.getAll();
+                if (products.length > 0) {
+                    product.id = products[products.length - 1].id + 1;
+                    users.push(product);
+                    await fs.promises.writeFile(productsFilePath, JSON.stringify(users, null, 2));
+                } else {
+                    products.id = products [products.length - 1].id + 1;
+                    products.push(product);
+                    await fs.promises.writeFile(productsFilePath, JSON.stringify(users, null, 2));
+                    return product;
+                }
+            
             } catch (error) {
                 return error;
             }
-        } else {
-            return [];
         }
-    }
-
-    creats = async (product) => {
-        if (fs.existsSync(this.path)) {
+        update = async (id, product) => {
             try {
-                const data = await fs.promises.readFile(this.path, 'utf-8');
-                const products = JSON.parse(data);
-                product.id = products.length + 1;
-                products.push(product);
-                await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
-                return product;
-            } catch (error) {
-                return error;
-            }
-        } else {
-            return [];
-        }
-    };
-    update = async (id, product) => {
-        if (fs.existsSync(this.path)) {
-            try {
-                const data = await fs.promises.readFile(this.path, 'utf-8');
-                const products = JSON.parse(data);
+                const products = await this.getAll();
                 const index = products.findIndex(product => product.id === id);
                 if (index !== -1) {
                     products[index] = product;
-                    await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
+                    await fs.promises.writeFile(productsFilePath, JSON.stringify(products, null, 2));
                     return product;
                 } else {
                     return null;
@@ -65,32 +57,10 @@ class Products {
             } catch (error) {
                 return error;
             }
-        } else {
-            return [];
         }
-    };
-    dellete = async (id) => {
-        if (fs.existsSync(this.path)) {
-            try {
-                const data = await fs.promises.readFile(this.path, 'utf-8');
-                const products = JSON.parse(data);
-                const index = products.findIndex(product => product.id === id);
-                if (index !== -1) {
-                    const product = products.splice(index, 1);
-                    await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
-                    return product;
-                } else {
-                    return null;
-                }
-            } catch (error) {
-                return error;
-            }
-        } else {
-            return [];
+        delete = async (id) => {
+         
         }
     
-    };
-
-}   
-
-export default Products;
+    
+}
