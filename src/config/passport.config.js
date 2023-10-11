@@ -1,7 +1,7 @@
 import passport from "passport";
 import local from "passport-local";
-import createHash from "../utils/createHash.js";
-import isValidPassword from "../utils/isValidPassword.js";
+import createHash from "../config/enviroment.config.js";
+import isValidPassword from "../config/enviroment.config.js";
 import userService from "../users/users.services.js";
 
 const LocalStrategy = local.Strategy;
