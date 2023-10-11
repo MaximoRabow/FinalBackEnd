@@ -1,8 +1,8 @@
 import userService from "../users/users.services.js"
 
 const home = async (req, res) => {
-    const users = await userService.getAll();
-    res.render('users', { users });
+    const user = await userService.getAll();
+    res.render('users', { user });
     }
 
 export default home;
