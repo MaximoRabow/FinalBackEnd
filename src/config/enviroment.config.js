@@ -13,6 +13,8 @@ class ConfigManager {
             this.JWT_EXPIRES = process.env.JWT_EXPIRES;
             this.JWT_COOKIE_EXPIRES = process.env.JWT_COOKIE_EXPIRES;
             this.PERSISTENCE = process.env.PERSISTENCE || "mongodb";
+            this.MAIL_USER = process.env.MAIL_USER;
+            this.MAIL_PASS = process.env.MAIL_PASS;
             this.userDAO = null;
             this.productDAO = null;
             this.initializePersistance();
