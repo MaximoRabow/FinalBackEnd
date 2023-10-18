@@ -1,8 +1,12 @@
 import productsService from "./products.service.js";
+import cartService from "../cart/cart.service.js";
+import MailingService from "../mailing/mailing.service.js";
 
 class ProductsController {
     constructor() {
         this.productsService = productsService;
+        this.cartService = cartService;
+        this.mailingService = MailingService;
     }
 
     async create(req, res) {
@@ -66,7 +70,38 @@ class ProductsController {
         }
     
     };
-}
 
+    async addProductToCart(req, res) {
+        const { productId } = req.params;
+        const { quantity } = req.body;
+        const cart = await this.cartService.getById(productId);
+        if (!cart) {
+            res.status(404).json({
+                message: "Product not found"
+            });
+            return;
+        }
+        if (cart.stock < quantity) {
+            res.status(400).json({
+                message: "Not enough stock"
+            });
+            return;
+        }
+        cart.stock -= quantity;
+        cart.cart.push({ productId, quantity });
+        await cart.save();
+        res.status(200).json(cart);
+        await this.cartService.update(productId, cart);
+        res.status(200).json(cart);
+        const mailOption = {
+            to: "XXXXXXXXXXXXXXXX",
+            subject: "MENSAJE A DESARROLLAR",
+            text: "Se ha realizado un nuevo pedido"
+        
+        };
+        this.mailingService.sendMail(mailOption);
+        res.send({status: "success",message: "Product added to cart", data: cart})
+    }
+}
 const productsController = new ProductsController();
 export default productsController;

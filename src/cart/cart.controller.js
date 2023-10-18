@@ -1,5 +1,6 @@
 import cartService from "./cart.service.js";
 
+
 class CartController {
     constructor() {
         this.cartService = cartService;
@@ -50,6 +51,7 @@ class CartController {
         }
     
     }
+
 }
 
 const cartController = new CartController();
