@@ -3,8 +3,24 @@ import mongoose from "mongoose";
 const usersCollection = "Users";
 
 const userSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
+    firstName: {
+        type: String,
+        required: true,
+        minlength: 2,
+        maxlength: 50,
+        lowercase: true,
+        match: /^[a-zA-Z]+$/,
+    },
+
+    lastName: {
+        type: String,
+        required: true,
+        minlength: 2,
+        maxlength: 50,
+        lowercase: true,
+        match: /^[a-zA-Z]+$/,
+    },
+
     email: {
         type: String,
         unique: true,
